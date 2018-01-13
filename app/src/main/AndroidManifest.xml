@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.masumabedin.myapplication">
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNT"></uses-permission>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--Stub Authenticator service-->
+        <service android:name="AuthenticatorService">
+        <intent-filter>
+            <action android:name="android.accounts.AccountAuthenticator"></action>
+        </intent-filter>
+        <meta-data
+            android:name="android.accounts.AccountAuthenticator"
+            android:resource="xml/authenticator">
+
+        </meta-data>
+    </service>
+        <!--StubContentProvider-->
+        <provider
+            android:authorities="StubContentProvider"
+            android:name="StubContentProvider"
+            android:exported="false"
+            android:syncable="true">
+
+        </provider>
+        <!--Sync Adapter service-->
+        <service android:name="SyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdaptera"
+                android:resource="@xml/syncadapter">
+
+            </meta-data>
+        </service>
+    </application>
+
+</manifest>

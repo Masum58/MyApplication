@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SyncAdapterDemo</string>
+    <string name="account_type">simplilearn.com</string>
+    <string name="authority">com.simplilearn.syncadapterdemo</string>
+</resources>
